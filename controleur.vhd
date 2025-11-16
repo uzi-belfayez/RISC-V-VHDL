@@ -15,8 +15,8 @@ entity controleur is
 		we     : out std_logic;
 		load   : out std_logic;
 		RI_sel : out std_logic;
-		--loadAcc : out std_logic;
-		--wrMem : out std_logic;
+		loadAcc : out std_logic;
+		wrMem : out std_logic;
       clk    : in std_logic;
 		funct3_out : out std_logic_vector(2 downto 0)
 		--Bsel : out std_logic; -- add to tb
@@ -39,26 +39,35 @@ architecture arch of controleur is
 				case OpCode is
 					when "0110011" =>   -- Type R
 						RI_sel <= '0';
-						--loadAcc <= '0';
+						loadAcc <= '0';
 						we <= '1';
-						--wrMem <= '0';
+						wrMem <= '0';
 						--Bsel <= '0';
 						load <= '0';
 						aluOp <= funct7(5) & funct3;
 					when "0010011" => -- Type I
 						RI_sel <= '1';
-						--loadAcc <= '0';
+						loadAcc <= '0';
 						we <= '1';
-						--wrMem <= '0';
+						wrMem <= '0';
 						--Bsel <= '0';
 						load <= '0';
 						aluOp <= funct7(5) & funct3;
 						
+					when "0000011" =>   -- Load
+						RI_sel <= '1';
+						loadAcc <= '1';
+						we <= '1';
+						wrMem <= '0';
+						--Bsel <= '0';
+						load <= '0';
+						aluOp <= "0000";
+						
 					when others => 
 						RI_sel <= '0';
-						--loadAcc <= '0';
+						loadAcc <= '0';
 						we <= '0';
-						--wrMem <= '0';
+						wrMem <= '0';
 						--Bsel <= '0';
 						load <= '0';
 						aluOp <= funct7(5) & funct3;
