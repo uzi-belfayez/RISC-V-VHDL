@@ -9,7 +9,7 @@ entity imem is
     DATA_WIDTH  :   natural:=32;
     ADDR_WIDTH  :   natural:=8;
     MEM_DEPTH   :   natural:=200;
-    INIT_FILE   :   string
+    INIT_FILE   :   string:="file.hex"
     );
     port 
     (

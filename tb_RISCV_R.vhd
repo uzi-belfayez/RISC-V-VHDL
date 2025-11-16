@@ -18,7 +18,7 @@ architecture arch of tb_RISCV_R is
             dataWidth   : integer := 32;
             addrWidth   : integer := 8;
             memDepth    : integer := 100;
-            memoryFile  : string  := "slt_02.hex.txt"
+            memoryFile  : string  := "file.txt"
         );
         port (
             clk   : in std_logic;
@@ -36,7 +36,7 @@ begin
             dataWidth   => 32,
             addrWidth   => 8,
             memDepth    => 100,
-            memoryFile  => "slt_02.hex.txt"
+            memoryFile  => "add_02.hex.txt"
         )
         port map (
             clk   => clk_t,
