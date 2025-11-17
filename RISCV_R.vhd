@@ -85,7 +85,7 @@ begin
             dout  => pc
         );
 
-    rdWrite <= '1';
+   
     
     rb_1 : entity work.RegBank 
         generic map (
@@ -98,7 +98,7 @@ begin
             BusW  => result_mux,  
             BusA  => src1,
             BusB  => src2,
-            WE    => rdWrite,
+            WE    => we,
             clk   => clk,
             reset => reset
         );
@@ -179,9 +179,9 @@ begin
         port map (
             clk  => clk,
             addr => dmem_addr,
-            data => result,
+            data  => dmem_data,
             we   => wrMem,
-            q    => dmem_out
+            q => dmem_out
         );
 
     
