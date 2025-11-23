@@ -42,7 +42,6 @@ architecture arch of controleur is
 						loadAcc <= '0';
 						we <= '1';
 						wrMem <= '0';
-						--Bsel <= '0';
 						load <= '0';
 						aluOp <= funct7(5) & funct3;
 					when "0010011" => -- Type I
@@ -50,7 +49,6 @@ architecture arch of controleur is
 						loadAcc <= '0';
 						we <= '1';
 						wrMem <= '0';
-						--Bsel <= '0';
 						load <= '0';
 						aluOp <= funct7(5) & funct3;
 						
@@ -59,7 +57,13 @@ architecture arch of controleur is
 						loadAcc <= '1';
 						we <= '1';
 						wrMem <= '0';
-						--Bsel <= '0';
+						load <= '0';
+						aluOp <= "0000";
+					when "0100011" => -- Store
+						RI_sel <= '1';
+						loadAcc <= '1';
+						we <= '0';
+						wrMem <= '1';
 						load <= '0';
 						aluOp <= "0000";
 						
