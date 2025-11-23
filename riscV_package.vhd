@@ -121,6 +121,20 @@ package riscV_package is
             q    : out std_logic_vector((DATA_WIDTH -1) downto 0)
         );
     end component;
+	 
+	 component LM is
+    generic
+    (
+        DATA_WIDTH : natural := 32
+    );
+    port
+    (
+        data : in std_logic_vector((DATA_WIDTH - 1) downto 0);
+        res : in std_logic_vector(1 downto 0);
+		  funct3 : in std_logic_vector(2 downto 0);
+		  dataOut : out std_logic_vector((DATA_WIDTH - 1) downto 0)
+    );
+end component;
     
 end package riscV_package;
 

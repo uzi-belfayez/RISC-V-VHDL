@@ -36,7 +36,7 @@ begin
             dataWidth   => 32,
             addrWidth   => 8,
             memDepth    => 100,
-            memoryFile  => "load_02.hex.txt"
+            memoryFile  => "load_03.hex.txt"
         )
         port map (
             clk   => clk_t,

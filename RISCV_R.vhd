@@ -54,6 +54,9 @@ architecture behav of RISCV_R is
     signal dmem_addr : std_logic_vector(addrWidth - 1 downto 0);
     signal dmem_data : std_logic_vector(dataWidth - 1 downto 0);
     signal dmem_out  : std_logic_vector(dataWidth - 1 downto 0);
+	 signal LM_res : std_logic_vector(1 downto 0);
+	 signal LM_out : std_logic_vector(dataWidth-1 downto 0);
+	 
 
 begin
 
@@ -128,17 +131,17 @@ begin
             res   => result
         );
 
-    ir_dec_1 : entity work.ir_dec_r 
-        generic map (
-            dataWidth  => dataWidth,
-            aluOpWidth => aluOpWidth
-        )
-        port map ( 
-            instr => instr,
-            aluOp => aluOp,
-            clk   => clk,
-            reset => reset
-        );
+--    ir_dec_1 : entity work.ir_dec_r 
+--        generic map (
+--            dataWidth  => dataWidth,
+--            aluOpWidth => aluOpWidth
+--        )
+--        port map ( 
+--            instr => instr,
+--            aluOp => aluOp,
+--            clk   => clk,
+--            reset => reset
+--        );
 
     imm_ext1 : entity work.imm_ext
         generic map (
@@ -191,9 +194,24 @@ begin
         )
         port map (
             input0 => result,      -- Résultat de l'ALU
-            input1 => dmem_out,    -- Données lues de la mémoire
+            input1 => LM_out,    -- Données lues de la mémoire
             output => result_mux,  
             sel    => loadAcc
         );
+		  
+
+		  
+		LM_1 : entity work.LM
+		generic map
+		(
+			DATA_WIDTH => dataWidth
+		)
+		port map
+		(
+			data => dmem_out,
+			res => LM_res,
+			funct3 => controler_funct3_out,
+			dataOut => LM_out
+		);
 
 end behav;
