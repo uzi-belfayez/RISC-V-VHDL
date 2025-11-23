@@ -19,8 +19,6 @@ entity controleur is
 		wrMem : out std_logic;
       clk    : in std_logic;
 		funct3_out : out std_logic_vector(2 downto 0)
-		--Bsel : out std_logic; -- add to tb
-		--Bres : in std_logic -- add to tb
 	);
 
 end entity;
