@@ -34,7 +34,7 @@ begin
             dataWidth   => 32,
             addrWidth   => 10,
             memDepth    => 100,
-            memoryFile  => "store_01.hex.txt"
+            memoryFile  => "store_02.hex.txt"
         )
         port map (
             clk   => clk_t,
@@ -43,8 +43,8 @@ begin
     
     process
     begin      
-        reset_t <= '1';
-        wait for 20 ns;
+--        reset_t <= '1';
+--        wait for 20 ns;
         reset_t <= '0';
         
         wait for 1000 ns;
